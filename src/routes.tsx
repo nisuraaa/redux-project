@@ -16,9 +16,6 @@ export default function AppRoutes() {
       element: <DashboardLayout />,
       children: [
         { path: "/", element: <Dashboard /> },
-        { path: "counter", element: <Counter /> },
-        { path: "todo", element: <Todo /> },
-        { path: "error", element: <Error /> },
       ],
     },
     {

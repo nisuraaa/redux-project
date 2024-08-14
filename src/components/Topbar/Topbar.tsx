@@ -1,13 +1,21 @@
-import { FormControlLabel, IconButton, MenuItem, styled, Switch, Toolbar, Typography } from "@mui/material";
-import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar';
+import {
+  Button,
+  FormControlLabel,
+  IconButton,
+  MenuItem,
+  styled,
+  Switch,
+  Toolbar,
+  Typography,
+} from '@mui/material';
+import MuiAppBar, {AppBarProps as MuiAppBarProps} from '@mui/material/AppBar';
 import Select from '@mui/material/Select';
 
-
-import React, { useState } from "react";
+import React, {useState} from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
-import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { changeThemeMode, selectThemeMode } from "../../appSlice";
-import { Trans, useTranslation } from "react-i18next";
+import {useAppDispatch, useAppSelector} from '../../store/hooks';
+import {changeThemeMode, selectThemeMode} from '../../appSlice';
+import {Trans, useTranslation} from 'react-i18next';
 import config from '../../config';
 
 const drawerWidth = 240;
@@ -15,7 +23,6 @@ const drawerWidth = 240;
 interface AppBarProps extends MuiAppBarProps {
   open?: boolean;
 }
-
 
 const AppBar = styled(MuiAppBar, {
   shouldForwardProp: (prop) => prop !== 'open',
@@ -37,7 +44,7 @@ const AppBar = styled(MuiAppBar, {
 
 const languages = [
   {lang: 'en', nativeName: 'English'},
-  {lang: 'de', nativeName: 'Deutsch'}
+  {lang: 'de', nativeName: 'Deutsch'},
 ];
 
 const Topbar = ({open, onDrawerOpen}: any) => {
@@ -51,46 +58,21 @@ const Topbar = ({open, onDrawerOpen}: any) => {
   };
   const onLangChange = (e: any) => {
     const selectedLang = e.target.value;
-    console.log(selectedLang)
-    debugger
+    console.log(selectedLang);
+    debugger;
     setLang(selectedLang);
     i18n.changeLanguage(selectedLang);
   };
 
-
   return (
     <AppBar position="fixed" open={open}>
       <Toolbar>
-
-        <IconButton
-          color="inherit"
-          aria-label="open drawer"
-          onClick={handleDrawerOpen}
-          edge="start"
-          sx={{
-            marginRight: 5,
-            ...(open && {display: 'none'}),
-          }}
-        >
-          <MenuIcon/>
-        </IconButton>
         <Typography variant="h6" noWrap component="div">
-          <Trans i18nKey="app.title">React + Redux-Toolkit + MUI + Typescript Boilerplate</Trans>
+          <Trans i18nKey="app.title">Shopping Cart</Trans>
         </Typography>
-
-        <Select onChange={onLangChange} defaultValue={lang} style={{marginLeft: 'auto'}}>
-          {languages.map((lan:any) => (
-            <MenuItem
-              key={lan.lang}
-              value={lan.lang}
-            >{lan.nativeName}</MenuItem>
-          ))}
-        </Select>
-        <FormControlLabel
-          style={{marginLeft: 'auto'}}
-          control={<Switch checked={themeMode == 'dark'} onChange={() => dispatch(changeThemeMode(themeMode))}/>}
-          label={t('app.darkMood')}
-        />
+        <Button variant="contained" color="secondary" style={{marginLeft: 'auto'}}>
+          Cart Items(0)
+        </Button>
       </Toolbar>
     </AppBar>
   );

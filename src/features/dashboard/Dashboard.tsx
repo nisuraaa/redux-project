@@ -2,6 +2,7 @@ import React from 'react';
 import Todo from "../todo/Todo";
 import Counter from "../counter/Counter";
 import { useTranslation } from "react-i18next";
+import Items from '../cart/Items';
 
 export default function Dashboard() {
   const {t, i18n} = useTranslation();
@@ -9,10 +10,8 @@ export default function Dashboard() {
 
   return (
     <div >
-      <h2>{t('dashboard')}</h2>
       <div style={{display: 'flex', flexWrap: 'wrap'}}>
-      <Todo/>
-      <Counter/>
+      <Items/>
       </div>
     </div>
   );
