@@ -17,6 +17,7 @@ import {useAppDispatch, useAppSelector} from '../../store/hooks';
 import {changeThemeMode, selectThemeMode} from '../../appSlice';
 import {Trans, useTranslation} from 'react-i18next';
 import config from '../../config';
+import { useNavigate } from 'react-router';
 
 const drawerWidth = 240;
 
@@ -52,18 +53,7 @@ const Topbar = ({open, onDrawerOpen}: any) => {
   const themeMode = useAppSelector(selectThemeMode);
   const dispatch = useAppDispatch();
   const {t, i18n} = useTranslation();
-
-  const handleDrawerOpen = () => {
-    onDrawerOpen(true);
-  };
-  const onLangChange = (e: any) => {
-    const selectedLang = e.target.value;
-    console.log(selectedLang);
-    debugger;
-    setLang(selectedLang);
-    i18n.changeLanguage(selectedLang);
-  };
-
+  const cart = useAppSelector((state) => state.cart.totalQuantity);
   return (
     <AppBar position="fixed" open={open}>
       <Toolbar>
@@ -71,7 +61,7 @@ const Topbar = ({open, onDrawerOpen}: any) => {
           <Trans i18nKey="app.title">Shopping Cart</Trans>
         </Typography>
         <Button variant="contained" color="secondary" style={{marginLeft: 'auto'}}>
-          Cart Items(0)
+          Cart Items({cart})
         </Button>
       </Toolbar>
     </AppBar>

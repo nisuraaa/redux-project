@@ -5,9 +5,6 @@ import UnauthorizedLayout from "./layouts/UnauthorizedLayout";
 
 const Error = lazy(() => import("./features/error/Error"));
 const Home = lazy(() => import("./features/home/Home"));
-const About = lazy(() => import("./features/help/Help"));
-const Todo = lazy(() => import("./features/todo/Todo"));
-const Counter = lazy(() => import("./features/counter/Counter"));
 const Dashboard = lazy(() => import("./features/dashboard/Dashboard"));
 
 export default function AppRoutes() {
@@ -22,7 +19,6 @@ export default function AppRoutes() {
       element: <UnauthorizedLayout />,
       children: [
         { path: "home", element: <Home /> },
-        { path: "about", element: <About /> },
       ],
     },
   ]);

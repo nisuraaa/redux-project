@@ -39,7 +39,6 @@ const DashboardLayout = () => {
   return (
     <Container>
       <TopBar open={open} onDrawerOpen={handleDrawerOpen} />
-      {/* <SideNav open={open} onDrawerOpen={handleDrawerOpen} onDrawerClose={handleDrawerClose} /> */}
       <PageContainer open={open} id="page-content-wrapper">
         <Suspense fallback={<div>Loading...</div>}>
           <Outlet />

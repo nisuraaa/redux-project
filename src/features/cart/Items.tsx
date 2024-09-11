@@ -10,6 +10,8 @@ import {
 } from '@mui/material';
 import React, {useEffect} from 'react';
 import {useLazyGetItemsQuery} from '../../api/cartApiSlice';
+import {useDispatch} from 'react-redux';
+import {addItem} from './cartSlice';
 
 const Items = () => {
   const [triggerGetItemsQuery, {data, error, isLoading}] = useLazyGetItemsQuery();
@@ -18,9 +20,15 @@ const Items = () => {
     triggerGetItemsQuery().unwrap();
   }, []);
 
+  const dispatch = useDispatch();
+
+  const handleAddToCart = (product: any) => {
+    dispatch(addItem(product));
+  };
+
   return (
     <div>
-      <List sx={{width: '100%', minWidth: '800px', bgcolor: 'background.paper'}}>
+      <List sx={{width: '100%', minWidth: '500PX', bgcolor: 'background.paper'}}>
         {data?.map((item: any) => (
           <div key={item.id}>
             <ListItem alignItems="flex-start">
@@ -39,7 +47,7 @@ const Items = () => {
                   </React.Fragment>
                 }
               />
-              <Button variant="contained" color="primary">
+              <Button variant="contained" color="primary" onClick={() => handleAddToCart(item)}>
                 Add to Cart
               </Button>
             </ListItem>

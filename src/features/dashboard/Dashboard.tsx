@@ -1,17 +1,19 @@
-import React from 'react';
-import Todo from "../todo/Todo";
-import Counter from "../counter/Counter";
-import { useTranslation } from "react-i18next";
+import {useTranslation} from 'react-i18next';
 import Items from '../cart/Items';
+import Cart from '../cart/CartItems';
+import {Divider} from '@mui/material';
 
 export default function Dashboard() {
   const {t, i18n} = useTranslation();
 
-
   return (
-    <div >
-      <div style={{display: 'flex', flexWrap: 'wrap'}}>
-      <Items/>
+    <div>
+      <div
+        style={{display: 'flex', gap: '10px', justifyContent: 'space-between', flexWrap: 'wrap'}}
+      >
+        <Items />
+        <Divider orientation="vertical" flexItem />
+        <Cart />
       </div>
     </div>
   );
